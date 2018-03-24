@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 const config = require('config');
 const Hapi = require('hapi');
 const Inert = require('inert');
@@ -10,11 +10,28 @@ const routes    = require('./routes/routes.js');
 const prettyStdOut = new PrettyStream();
 prettyStdOut.pipe(process.stdout);
 
-new Hapi.Server({
+const server = Hapi.Server({
     host: config.get('serverConf.host'),
     port: config.get('serverConf.port'),
-    routes : routes,
     debug: {
         request: ['error']
     }
 });
+// Add the routes
+server.route(routes);
+
+// Start the server
+async function start() {
+
+    try {
+        await server.start();
+    }
+    catch (err) {
+        console.log(err);
+        process.exit(1);
+    }
+
+    console.log('Server running at:', server.info.uri);
+}
+
+start();
