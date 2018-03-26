@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/arunkumarpalaniappan/todo-server#readme",
   "dependencies": {
+    "aws-sdk": "^2.213.1",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "boom": "^7.2.0",
