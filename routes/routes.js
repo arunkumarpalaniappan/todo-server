@@ -37,6 +37,7 @@ module.exports = [
         method: 'POST',
         config: {
             handler: todos.createTodo,
+            auth: 'jwt',
             validate: {
                 payload: {
                     todos: Joi.any().required()
@@ -49,6 +50,7 @@ module.exports = [
         method: 'PUT',
         config: {
             handler: todos.editTodo,
+            auth: 'jwt',
             validate: {
                 payload: {
                     id: Joi.string().required(),
@@ -62,6 +64,7 @@ module.exports = [
         method: 'DELETE',
         config: {
             handler: todos.deleteTodo,
+            auth: 'jwt',
             validate: {
                 payload: {
                     id: Joi.string().required()

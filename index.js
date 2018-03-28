@@ -5,33 +5,47 @@ const Inert = require('inert');
 const bunyan = require('bunyan');
 const PrettyStream = require('bunyan-prettystream');
 const routes    = require('./routes/routes.js');
+const isValidUser = require("./lib/isValidUser").isValidUser;
 
 //logs with pretty stream only on development mode
 const prettyStdOut = new PrettyStream();
 prettyStdOut.pipe(process.stdout);
 
-const server = Hapi.Server({
-    host: config.get('serverConf.host'),
-    port: config.get('serverConf.port'),
-    debug: {
-        request: ['error']
+const validate = async function (decoded) {
+    if (!isValidUser(decoded.email)) {
+        return {isValid: false};
     }
-});
-// Add the routes
-server.route(routes);
-
-// Start the server
-async function start() {
-
-    try {
-        await server.start();
+    else {
+        return {isValid: true};
     }
-    catch (err) {
-        console.log(err);
-        process.exit(1);
-    }
+};
 
+const init = async () => {
+    const server = Hapi.Server({
+        host: config.get('serverConf.host'),
+        port: config.get('serverConf.port'),
+        debug: {
+            request: ['error']
+        }
+    });
+    await server.register(require('hapi-auth-jwt2'));
+    server.auth.strategy('jwt', 'jwt',
+        {
+            key: 'todos@arunkumarpalaniappan.me',
+            validate: validate,
+            verifyOptions: {algorithms: ['HS256']}
+        });
+
+    server.auth.default('jwt');
+    // Add the routes
+    server.route(routes);
+    await server.start();
+    return server;
+};
+
+init().then(server => {
     console.log('Server running at:', server.info.uri);
-}
-
-start();
+})
+    .catch(error => {
+        console.log(error);
+    });
