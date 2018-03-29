@@ -22,8 +22,8 @@ const validate = async function (decoded) {
 
 const init = async () => {
     const server = Hapi.Server({
-        host: config.get('serverConf.host'),
-        port: config.get('serverConf.port'),
+        host: process.env.HOST || config.get('serverConf.host'),
+        port: process.env.POST || config.get('serverConf.port'),
         debug: {
             request: ['error']
         }
