@@ -21,10 +21,9 @@ const validate = async function (decoded) {
 };
 
 const init = async () => {
-    console.log(process.env)
     const server = Hapi.Server({
-        host: process.env.HOST,
-        port: process.env.POST,
+        host: process.env.HOST || config.get('serverConf.host'),
+        port: process.env.PORT || config.get('serverConf.port'),
         debug: {
             request: ['error']
         }
@@ -32,18 +31,16 @@ const init = async () => {
     await server.register(require('hapi-auth-jwt2'));
     server.auth.strategy('jwt', 'jwt',
         {
-            key: 'todos@arunkumarpalaniappan.me',
+            key: config.get('jwt.key'),
             validate: validate,
-            verifyOptions: {algorithms: ['HS256']}
+            verifyOptions: {algorithms: [config.get('jwt.alg')]}
         });
 
     server.auth.default('jwt');
-    // Add the routes
     server.route(routes);
     await server.start();
     return server;
 };
-
 init().then(server => {
     console.log('Server running at:', server.info.uri);
 })

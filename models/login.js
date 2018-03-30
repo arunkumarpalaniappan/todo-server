@@ -1,12 +1,13 @@
 'use strict';
 const Promise = require("bluebird");
-const isValidUser = require("../lib/isValidUser").isValidUser;
+const isValidUser = require("../lib/verifyLogin").validateUser;
 exports.authenticateUser = function () {
     return new Promise((resolve,reject) => {
-        if (isValidUser(this)) {
-            resolve({status: true})
-        } else {
-            reject(false)
-        }
-    })
+        isValidUser(this).then(response => {
+            resolve(response)
+        })
+            .catch(error => {
+                reject(error)
+            });
+    });
 };

@@ -7,6 +7,6 @@ exports.authenticateUser = function (request, reply) {
     return Login.authenticateUser.call(payload).then(function(user){
         return user
     }).catch(function(err){
-        return Boom.unauthorized(err);
+        return err;
     })
 };
