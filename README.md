@@ -1,6 +1,6 @@
 ### todo-server
 
-A Simple to-do application with aws dynamo db database connectivity and user authentication.
+Todo application's backend using node.js, dynamodb connectivity and jwt authorisation.
 
 #### Application Stack/Tech
 - Heroku
@@ -8,6 +8,10 @@ A Simple to-do application with aws dynamo db database connectivity and user aut
 - Hapi
 - Express
 - Blue Bird
+- Json Web Token
+- Joi
+- bcrypt.js
+- Bunyan Logger
 
 #### Data Base
 - AWS Dynamo DB
