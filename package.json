@@ -4,7 +4,7 @@
   "description": "Todo Application Server",
   "main": "index.js",
   "scripts": {
-    "start": "node cluster.js",
+    "start": "npm install && node cluster.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
