@@ -11,8 +11,8 @@ module.exports = [
             auth: false,
             validate : {
                 payload : {
-                    'email'        : Joi.string().required(),
-                    'password'     : Joi.string().required()
+                    'email': Joi.string().required(),
+                    'password': Joi.string().required()
                 }
             }
         }

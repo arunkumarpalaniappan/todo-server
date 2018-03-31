@@ -12,7 +12,7 @@ const prettyStdOut = new PrettyStream();
 prettyStdOut.pipe(process.stdout);
 
 const validate = async function (decoded) {
-    if (!isValidUser(decoded.email)) {
+    if (!isValidUser(decoded)) {
         return {isValid: false};
     }
     else {
