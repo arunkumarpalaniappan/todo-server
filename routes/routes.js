@@ -40,7 +40,8 @@ module.exports = [
             auth: 'jwt',
             validate: {
                 payload: {
-                    todos: Joi.any().required()
+                    'email': Joi.string().required(),
+                    'todos': Joi.any().required()
                 }
             }
         }
@@ -53,8 +54,8 @@ module.exports = [
             auth: 'jwt',
             validate: {
                 payload: {
-                    id: Joi.string().required(),
-                    todos: Joi.any().required()
+                    'email': Joi.string().required(),
+                    'todos': Joi.any().required()
                 }
             }
         }
@@ -67,7 +68,8 @@ module.exports = [
             auth: 'jwt',
             validate: {
                 payload: {
-                    id: Joi.string().required()
+                    'email': Joi.string().required(),
+                    'todos': Joi.any().required()
                 }
             }
         }
