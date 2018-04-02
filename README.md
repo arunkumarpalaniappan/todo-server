@@ -66,4 +66,10 @@ MIT
 
 `RESPONSE: Success Message or 401`
 
+##### Get Profile
+`/profile`
+
+`METHOD: GET`
+
+`RESPONSE: Profile Info or 401`
 
