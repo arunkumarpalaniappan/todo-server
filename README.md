@@ -25,7 +25,7 @@ Todo application's backend using node.js, dynamodb connectivity and jwt authoris
 
 **Note**
 
-All end points(except login and signup) must be accessed only if the jwt token from `/login` is provided in the Authorization Header
+All end points(except login and signup) can be accessed only if the jwt token from `/login` is provided in the Authorization Header
 
 ##### Login
 `/login`
