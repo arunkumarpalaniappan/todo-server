@@ -2,6 +2,7 @@ const Joi = require("joi");
 const login = require("../controllers/login");
 const signup = require("../controllers/signup");
 const todos = require("../controllers/todo");
+const profile = require("../controllers/profile");
 module.exports = [
     {
         path: '/login',
@@ -40,7 +41,6 @@ module.exports = [
             auth: 'jwt',
             validate: {
                 payload: {
-                    'email': Joi.string().required(),
                     'todos': Joi.any().required()
                 }
             }
@@ -54,7 +54,6 @@ module.exports = [
             auth: 'jwt',
             validate: {
                 payload: {
-                    'email': Joi.string().required(),
                     'todos': Joi.any().required()
                 }
             }
@@ -68,10 +67,17 @@ module.exports = [
             auth: 'jwt',
             validate: {
                 payload: {
-                    'email': Joi.string().required(),
                     'todos': Joi.any().required()
                 }
             }
+        }
+    },
+    {
+        path: '/profile',
+        method: 'GET',
+        config: {
+            handler: profile.getInfo,
+            auth: 'jwt'
         }
     }
 ];

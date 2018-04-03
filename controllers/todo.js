@@ -4,6 +4,7 @@ const Todo = require('../models/todo');
 
 exports.createTodo = function (request, response) {
     const payload = request.payload;
+    payload.email = request.auth.credentials.Item.email.S;
     return Todo.createTodo.call(payload).then(status => {
         return status
     }).catch(err => {
@@ -13,6 +14,7 @@ exports.createTodo = function (request, response) {
 
 exports.editTodo = function (request, response) {
     const payload = request.payload;
+    payload.email = request.auth.credentials.Item.email.S;
     return Todo.editTodo.call(payload).then(status => {
         return status
     }).catch(err => {
@@ -22,6 +24,7 @@ exports.editTodo = function (request, response) {
 
 exports.deleteTodo = function (request, response) {
     const payload = request.payload;
+    payload.email = request.auth.credentials.Item.email.S;
     return Todo.deleteTodo.call(payload).then(status => {
         return status
     }).catch(err => {

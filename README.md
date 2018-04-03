@@ -44,7 +44,7 @@ MIT
 
 `METHOD: POST`
 
-`parameters: email,todos`
+`parameters: todos`
 
 `RESPONSE: Success Message or 401`
 
@@ -53,7 +53,7 @@ MIT
 
 `METHOD: PUT`
 
-`parameters: email,todos`
+`parameters: todos`
 
 `RESPONSE: Success Message or 401`
 
@@ -62,7 +62,7 @@ MIT
 
 `METHOD: DELETE`
 
-`parameters: email,todos`
+`parameters: todos`
 
 `RESPONSE: Success Message or 401`
 
