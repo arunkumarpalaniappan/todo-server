@@ -45,6 +45,13 @@ All end points(except login and signup) can be accessed only if the jwt token fr
 
 `RESPONSE: Success Message or 401`
 
+##### Get Todo
+`/todo`
+
+`METHOD: GET`
+
+`RESPONSE: Success Message or 401`
+
 ##### Create Todo
 `/todo`
 

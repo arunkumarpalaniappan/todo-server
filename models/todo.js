@@ -1,9 +1,9 @@
 'use strict';
 const Promise = require("bluebird");
-const updateTodos = require("../lib/todos").updateTodos;
+const todoLib = require("../lib/todos");
 exports.createTodo = function () {
     return new Promise((resolve, reject) => {
-        updateTodos(this).then(response => {
+        todoLib.updateTodos(this).then(response => {
             if (Object.keys(response).length === 0) {
                 resolve({status: true})
             } else {
@@ -17,7 +17,7 @@ exports.createTodo = function () {
 };
 exports.editTodo = function () {
     return new Promise((resolve, reject) => {
-        updateTodos(this).then(response => {
+        todoLib.updateTodos(this).then(response => {
             if (Object.keys(response).length === 0) {
                 resolve({status: true})
             } else {
@@ -31,7 +31,7 @@ exports.editTodo = function () {
 };
 exports.deleteTodo = function () {
     return new Promise((resolve, reject) => {
-        updateTodos(this).then(response => {
+        todoLib.updateTodos(this).then(response => {
             if (Object.keys(response).length === 0) {
                 resolve({status: true})
             } else {
@@ -43,3 +43,13 @@ exports.deleteTodo = function () {
             });
     })
 };
+exports.getTodo = function () {
+    return new Promise((resolve,reject) => {
+        todoLib.getTodos(this).then(response => {
+            resolve(response);
+        })
+        .catch(err => {
+            reject(err);
+        })
+    })
+}

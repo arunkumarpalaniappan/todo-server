@@ -73,6 +73,14 @@ module.exports = [
         }
     },
     {
+        path: '/todo',
+        method: 'GET',
+        config: {
+            handler: todos.getTodo,
+            auth: 'jwt'
+        }
+    },
+    {
         path: '/profile',
         method: 'GET',
         config: {

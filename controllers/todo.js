@@ -31,3 +31,13 @@ exports.deleteTodo = function (request, response) {
         return Boom.serverUnavailable(err)
     })
 };
+
+exports.getTodo = function (request, response) {
+    const payload = {};
+    payload.email = request.auth.credentials.Item.email.S;
+    return Todo.getTodo.call(payload).then(status => {
+        return status;
+    }).catch(err => {
+        return Boom.serverUnavailable(err);
+    })
+}
