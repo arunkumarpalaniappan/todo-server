@@ -4,7 +4,7 @@ const isValidUser = require("../lib/verifyLogin").validateUser;
 exports.authenticateUser = function () {
     return new Promise((resolve,reject) => {
         isValidUser(this).then(response => {
-            resolve(response)
+            resolve({token:response})
         })
             .catch(error => {
                 reject(error)
